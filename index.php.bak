@@ -1,0 +1,53 @@
+<?php
+
+include('header.php');
+
+
+
+?>
+
+<div class="banner">
+	 <div class="container">			
+			<script src="js/responsiveslides.min.js"></script>
+			  <script>
+					$(function () {
+					  $("#slider").responsiveSlides({
+						auto: true,
+						nav: false,
+						speed: 500,
+						namespace: "callbacks",
+						pager: true,
+					  });
+					});
+			 </script>
+			 <div class="slider">
+				 <div class="callbacks_container">
+				     <ul class="rslides" id="slider">
+						 <li>	          
+							  <h2>Give a Helping Hand</h2>
+							 <h3>Maecenas dignissim nibh.</h3>
+						 </li>
+						 <li>	          
+							 <h2>Help a Child Without Family</h2>
+							 <h3>Fusce vel lacus dapibus.</h3>
+						 </li>
+						 <li>	          
+							 <h2>Don't Leave Orphans Alone</h2>		
+							 <h3>Aenean maximus in sem.</h3>
+						 </li>
+					  </ul>
+				 </div>
+			 </div>
+			  <!----->		  
+
+	 </div>
+</div>
+<?php
+
+include('footer.php');
+
+
+
+?>
+
+

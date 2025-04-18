@@ -1,0 +1,90 @@
+<link href="jsDatePick_ltr.min.css" type="text/css" rel="stylesheet"  />
+<script type="text/javascript" src="jsDatePick.min.1.3.js"></script>
+
+
+
+<?php
+include('userheader.php');
+error_reporting(0);
+ include_once("config.php");
+ session_start();
+?>
+
+<?php
+
+mysql_connect("localhost","root","")  or die(mysql_error());
+mysql_select_db("event")  or die(mysql_error());
+
+ 
+	
+?>
+<div align="center">
+
+<script type="text/javascript">	
+  $(document).ready(function(){
+    $("#Allocatetomanager").validate();
+  });
+</script>
+<div class="content">
+    <div class="content_resize">
+
+    
+<form action="viewbookings.php" name="viewbookings"  id="viewbookings"  method="post">
+<br>
+<div align="center">
+</br></br></br></br>
+<h2> Event DETAILS: </h2>
+	<center >
+	<table border="2" cellspacing="6" class="displaycontent" width="800" height="120" style="border:10px solid #800000;" align="center">
+	<tr>
+	    
+			<th bgcolor=Black><font color=white size=2>Booking Id </font></th>
+			<th bgcolor=Black><font color=white size=2>Event ID</font></th>
+						<th bgcolor=Black><font color=white size=2>Event Name</font></th>
+			<th bgcolor=Black><font color=white size=2>Category</font></th>
+			<th bgcolor=Black><font color=white size=2>Event Time</font></td>
+						<th bgcolor=Black><font color=white size=2>Event Date</font></td>
+												<th bgcolor=Black><font color=white size=2>Booked On</font></td>
+				
+
+  
+         
+	</tr>
+	
+	<?php
+	$name=$_SESSION['login_user'];
+	mysql_connect("localhost","root","")  or die(mysql_error());
+mysql_select_db("event")  or die(mysql_error());
+	$query = "select * from booking where uname='".$name."'";
+//	echo $query;
+	$result = mysql_query($query) or die(mysql_error());
+	while($row = mysql_fetch_assoc($result))
+		{
+ ?>
+	<tr>
+		
+       
+		<td bgcolor=white><font color=#000000 size=2><?php echo $row['id']; ?></font></td>
+	
+		<td bgcolor=white><font color=#000000 size=2><?php echo $row['eventid']; ?></font></td>
+				<td bgcolor=white><font color=#000000 size=2><?php echo $row['Event_Name']; ?></font></td>
+ 		<td bgcolor=white><font color=#000000 size=2><?php echo $row['Category']; ?></font></td>
+        <td bgcolor=white><font color=#000000 size=2><?php echo $row['Event_time']; ?></font></td>
+		        <td bgcolor=white><font color=#000000 size=2><?php echo $row['eventdate']; ?></font></td>
+						        <td bgcolor=white><font color=#000000 size=2><?php echo $row['Bookingdate']; ?></font></td>
+
+					    
+		
+        
+	</tr>
+	<?php }  ?>
+	
+	</table>
+	
+	<br><br><br>
+
+<?php
+include('footer.php');
+?>
+ 
+

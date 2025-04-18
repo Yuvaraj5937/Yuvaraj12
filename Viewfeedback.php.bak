@@ -1,0 +1,87 @@
+<?php
+ include_once("config.php");
+ 
+include_once("staffheader.php");
+
+?>	
+
+
+	<?php
+
+mysql_connect("localhost","root","")  or die(mysql_error());
+mysql_select_db("event")  or die(mysql_error());
+
+	$query = "select * from applyod";
+		$result = mysql_query($query) or die(mysql_error());
+
+
+// for insert 
+	
+	?>
+<?php
+mysql_connect("localhost","root","")  or die(mysql_error());
+mysql_select_db("event")  or die(mysql_error());
+
+ 
+	
+?>
+
+
+<style>
+table.tab tr td,table.tab tr th{
+	padding:5px;
+	border:1px solid #000;
+}
+</style>
+		</br>
+				</br>
+						</br>
+								</br>	
+
+			<form action="" name="edateform"  method="post" enctype="multipart/form-data">
+		
+					
+<div align="center">
+	<center >
+		<table border="2" cellspacing="6" class="displaycontent" width="800" style="border:10px solid Green;" align="center">  
+			<tr>
+			<th bgcolor=Black><font color=white size=2>ID</font></th>
+			<th bgcolor=Black><font color=white size=2>User Name</font></th>
+			<th bgcolor=Black><font color=white size=2>Event Name</font></th>
+			<th bgcolor=Black><font color=white size=2>Event Date</font></th>
+			<th bgcolor=Black><font color=white size=2>OD Date</font></th>
+			<th bgcolor=Black><font color=white size=2>Venue </font></th>
+			<th bgcolor=Black><font color=white size=2>Status </font></th>
+			
+		
+			
+		            
+	</tr>
+		<?php
+    while($row=mysql_fetch_array($result))
+	{
+
+?>
+			<tr>
+		<td bgcolor=white><font color=#000000 size=2><?php echo $row['id']; ?></font></td>	
+		<td bgcolor=white><font color=#000000 size=2><?php echo $row['UName']; ?></font></td>
+		<td bgcolor=white><font color=#000000 size=2><?php echo $row['Eventname']; ?></font></td>
+		<td bgcolor=white><font color=#000000 size=2><?php echo $row['Eventdate']; ?></font></td>
+       	<td bgcolor=white><font color=#000000 size=2><?php echo $row['ODdate'];?></font></td>
+		<td bgcolor=white><font color=#000000 size=2><?php echo $row['Venue']; ?></font></td>
+		<td bgcolor=white><font color=#000000 size=2><?php echo $row['Status']; ?></font></td>
+		
+ 	</tr>
+		<?php
+		}	
+
+?>	
+</table>
+
+</div>	   <!-- End container -->		
+				</form>
+
+		</br>		</br>		</br>	
+<?php			
+	include_once("footer.php");
+?>

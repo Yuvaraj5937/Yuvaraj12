@@ -1,0 +1,133 @@
+<link href="jsDatePick_ltr.min.css" type="text/css" rel="stylesheet"  />
+<script type="text/javascript" src="jsDatePick.min.1.3.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		new JsDatePick({
+			useMode:2,
+			target:"Adate",
+			dateFormat:"%d-%M-%Y",
+			selectedDate:{		
+				day:31,		
+				month:1,
+				year:2017
+			},
+			yearsRange:[1984,1996],
+			limitToToday:false,
+			//cellColorScheme:"beige",
+			dateFormat:"%d-%m-%Y",
+			//imgPath:"img/",
+			weekStartDay:1
+		});
+	};
+</script>
+
+<?php
+error_reporting(0);
+
+include('config/config.php');
+if(isset($_GET['select'])){
+
+$query2 = "select * from applyod where id='".$_GET['select']."'";
+			//echo $query2;
+			$result = mysql_query($query2);
+			if(mysql_num_rows($result)){
+			$row = mysql_fetch_assoc($result);
+			}
+}
+//echo $query2;
+?>
+
+<?php
+include('staffheader.php');
+
+ ?>
+
+<div align="center">
+
+<script type="text/javascript">	
+  $(document).ready(function(){
+    $("#Allocatetomanager").validate();
+  });
+</script>
+<div class="content">
+    <div class="content_resize">
+
+    
+<form action="Orderupdate.php" name="Orderupdate_form" id="Orderupdate_form"   method="post">
+<br>
+<div align="center">
+<br>
+<br>
+<h2> Updaet: </h2>
+	<center >
+	</table>
+	
+	<br>
+<br>
+	<table border="0" cellspacing="4" cellspadding="4"  bgcolor="Orange" class="displaycontent"  width="500" height="350">
+	<caption></caption>
+		<tr>
+		<td class="col"><b>id:</b></td>
+		<td><input type="text" name="Iid" value="<?php echo $row['id']; ?>" class="required email"  /></td>
+	</tr>
+	
+	<tr>
+		<td class="col"><b>Status:</b></td>
+		<td><input type="text" name="Iname" value="" class="required" /></td>
+	</tr>
+	
+	<tr>
+		<td>&nbsp;</td>
+		<td >
+			<input type="submit" name="register" value="Update" />
+		     
+		</td>
+	</tr>
+
+	
+		
+	
+	</table>
+
+	</form>
+</div>
+    </div>
+</div>
+
+
+<?php
+ include_once("config/config.php");  
+ 
+if(isset($_POST['register'])){
+// echo '<script> alert("DETAILS");</script>';
+	 //if($_POST['CEmail']=="" || $_POST['Userid']=="" || $_POST['Edate']=="" || $_POST['Cproject']==""|| $_POST['sub']=="" )
+	// {
+	//	 echo '<script> alert("PLEASE FILL THE DETAILS");</script>';
+	// }
+	// else
+	//{
+	$query = "update `applyod` set  Status ='".$_POST['Iname']."' where id='".$_POST['Iid']."'";
+	echo $query;
+       //echo '<script> alert("REGISTERD SUCCESSFULLY");</script>';
+	
+	
+   
+	if(mysql_query($query)){
+		echo 'REGISTERD SUCCESSFULLY';
+
+	}
+	else{
+		echo 'NOT REGISTERD';
+	}
+	//header("location:Viewod.php");
+	exit;
+//}
+ }
+
+?>
+
+<?php
+include('footer.php');
+?>
+ 
+
